@@ -1,6 +1,6 @@
 {
-    "name": "23311",
-    "displayName": "23311",
+    "name": "scm-test-provider",
+    "displayName": "SCM Test Provider",
     "description": "",
     "version": "0.0.1",
     "publisher": "chrmarti",
@@ -11,14 +11,89 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "*"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+        "commands": [
+            {
+                "command": "baseFolderScm.revert",
+                "title": "Revert",
+                "icon": {
+                    "light": "resources/icons/light/clean.svg",
+                    "dark": "resources/icons/dark/clean.svg"
+                }
+            },
+            {
+                "command": "baseFolderScm.commit",
+                "title": "Commit",
+                "icon": {
+                    "light": "resources/icons/light/check.svg",
+                    "dark": "resources/icons/dark/check.svg"
+                }
+            },
+            {
+                "command": "baseFolderScm.refresh",
+                "title": "Refresh",
+                "icon": {
+                    "light": "resources/icons/light/refresh.svg",
+                    "dark": "resources/icons/dark/refresh.svg"
+                }
+            }
+        ],
+        "menus": {
+            "scm/resourceGroup/context": [
+                {
+                    "command": "baseFolderScm.revert",
+                    "when": "scmProvider == baseFolder",
+                    "group": "inline"
+                },
+                {
+                    "command": "baseFolderScm.commit",
+                    "when": "scmProvider == baseFolder",
+                    "group": "inline"
+                },
+                {
+                    "command": "baseFolderScm.revert",
+                    "when": "scmProvider == baseFolder"
+                },
+                {
+                    "command": "baseFolderScm.commit",
+                    "when": "scmProvider == baseFolder"
+                }
+            ],
+            "scm/resource/context": [
+                {
+                    "command": "baseFolderScm.revert",
+                    "when": "scmProvider == baseFolder",
+                    "group": "inline"
+                },
+                {
+                    "command": "baseFolderScm.commit",
+                    "when": "scmProvider == baseFolder",
+                    "group": "inline"
+                },
+                {
+                    "command": "baseFolderScm.revert",
+                    "when": "scmProvider == baseFolder"
+                },
+                {
+                    "command": "baseFolderScm.commit",
+                    "when": "scmProvider == baseFolder"
+                }
+            ],
+            "scm/title": [
+                {
+                    "command": "baseFolderScm.refresh",
+                    "when": "scmProvider == baseFolder",
+                    "group": "navigation"
+                },
+                {
+                    "command": "baseFolderScm.refresh",
+                    "when": "scmProvider == baseFolder"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
